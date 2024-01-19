@@ -57,11 +57,18 @@ fn main() {
                 else {
                     println!("{} is skiped", entry.path().display());
                 }
-                println!("Прочитанно \t{}/{}", index, file_count);
+                println!("Прочитанно \t{}/{}\r", index, file_count);
             }
         }
         let mut index = 0;
         let new_len = r.len()+g.len()+b.len();
+
+        r.sort_by_key(|img_d| img_d.r);
+        g.sort_by_key(|img_d| img_d.g);
+        b.sort_by_key(|img_d| img_d.b);
+
+
+
         copy(new_len, r, path.clone(), &path2.clone(), &mut index);
         copy(new_len, g, path.clone(), &path2.clone(), &mut index);
         copy(new_len, b, path.clone(), &path2.clone(), &mut index);
